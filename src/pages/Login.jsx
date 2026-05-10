@@ -21,7 +21,7 @@ export function Login(){
     useEffect(()=> {
         const checkLogin = async () => {
             try {
-                const res = await axios.get("http://localhost/ZOOM_BACKEND/src/api/checkLogin.php", {
+                const res = await axios.get("https://myzoomapi.great-site.net/zoom_backend-main/src/api/checkLogin.php", {
                     withCredentials: true
                 })
                 console.log(res.data);
@@ -36,7 +36,7 @@ export function Login(){
         console.log(data);
         try {
              let res = await axios.post(
-            "http://localhost/ZOOM_BACKEND/src/api/login.php",
+            "https://myzoomapi.great-site.net/zoom_backend-main/src/api/login.php",
             data,
             {
                  headers: { "Content-Type": "application/json" },

@@ -10,7 +10,7 @@ export function PublicNav({ auth }) {
   // const { user } = useContext(UserContext)
   const user =  JSON.parse(localStorage.getItem("user"));
 
-  let ImageUrl = "http://localhost/ZOOM_BACKEND/src/api/public/uploads/"
+  let ImageUrl = "https://myzoomapi.great-site.net/zoom_backend-main/src/api/public/uploads/"
 
   const navigate = useNavigate();
   const logOut = useLogout(navigate);
@@ -142,7 +142,7 @@ export function PublicNav({ auth }) {
                 <span>Write</span>
               </NavLink>
 
-              <div className="
+              <div  onClick={toggleNav} className="
   w-11 h-11
   rounded-full
   bg-[#16242C]
@@ -152,7 +152,7 @@ export function PublicNav({ auth }) {
   hover:border-[#39F3E2]
   transition duration-300
 ">
-                <button onClick={toggleNav}>
+                <button>
                   {user?.profile ? (
                     <img
                       src={ImageUrl + user.profile}

@@ -31,7 +31,7 @@ console.log(errors);
   useEffect(() => {
         const checkToken = async () => {
           try {
-            const res = await axios.get("http://localhost/ZOOM_BACKEND/src/api/generateCsrf.php", {
+            const res = await axios.get("https://myzoomapi.great-site.net/zoom_backend-main/src/api/generateCsrf.php", {
               withCredentials: true
             })
             setToken(res.data.csrf_token);
@@ -72,7 +72,7 @@ console.log(errors);
 
       try {
         let res = await axios.post(
-          "http://localhost/ZOOM_BACKEND/src/api/signup.php",
+          "https://myzoomapi.great-site.net/zoom_backend-main/src/api/signup.php",
           data,
           {
             headers: {

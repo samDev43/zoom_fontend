@@ -28,7 +28,7 @@ export function AdminPanel() {
         const token = localStorage.getItem("token");
         const getAllUsers = async () => {
             try {
-                const res = await axios.get("http://localhost/ZOOM_BACKEND/src/api/getallUsers.php", {
+                const res = await axios.get("https://myzoomapi.great-site.net/zoom_backend-main/src/api/getallUsers.php", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -41,7 +41,7 @@ export function AdminPanel() {
 
         const getAllPosts = async () => {
             try {
-                const res = await axios.get("http://localhost/ZOOM_BACKEND/src/api/getallposts.php", {
+                const res = await axios.get("https://myzoomapi.great-site.net/zoom_backend-main/src/api/getallposts.php", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

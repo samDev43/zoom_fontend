@@ -26,7 +26,7 @@ export function Comment({ postId, setComments  }) {
         try{
             
             const res = await axios.post(
-                "http://localhost/ZOOM_BACKEND/src/api/postComent.php",
+                "https://myzoomapi.great-site.net/zoom_backend-main/src/api/postComent.php",
                 { comment, postId },
                 {
                     headers : { "Authorization" : `Bearer ${token}` }
@@ -48,7 +48,7 @@ export function Comment({ postId, setComments  }) {
     // async function fetchComments() {
     //     try {
     //         const res = await axios.get(
-    //         `http://localhost/ZOOM_BACKEND/src/api/getComments.php?post_id=${postId}`
+    //         `https://myzoomapi.great-site.net/zoom_backend-main/src/api/getComments.php?post_id=${postId}`
     //         );
 
     //         (res.data.comments);
