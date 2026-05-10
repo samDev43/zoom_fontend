@@ -1,26 +1,29 @@
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { PublicNav } from "../compoents/publicNav"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
  const productSchema = z.object({
     username : z.string().nonempty("title is required").min(5, "it should be more than 5 characters"),
     email :z.string().nonempty('email is required').email("invalid email address"),
     password : z.string().nonempty("password is requird").min(5, "it should be more than 10"),
-    confirmPassword : z.string().nonempty("confirm password is required"),
-    csrf_token : z.string().nonempty("csrf token is required")
+    confirmPassword : z.string().nonempty("confirm password is required")
+    // csrf_token : z.string().nonempty("csrf token is required")
   })
 
 export function Signup() {
+  const navigate = useNavigate();
   // const { register, handleSubmit, formState: { errors } } = useForm();
   const [ checkPassword, setCheckPassword ] = useState(false)
-  const [ token, setToken ] = useState("")
+  // const [ token, setToken ] = useState("")
   const {
     register,
-    setValue,
+    // setValue,
     handleSubmit,
     formState: { errors },
   } = useForm({resolver: zodResolver(productSchema)
@@ -28,34 +31,31 @@ export function Signup() {
 
 console.log(errors);
 
-  useEffect(() => {
-        const checkToken = async () => {
-          try {
-            const res = await axios.get("https://myzoomapi.great-site.net/zoom_backend-main/src/api/generateCsrf.php", {
-              withCredentials: true
-            })
-            setToken(res.data.csrf_token);
-            console.log(res.data.csrf_token);
+  // useEffect(() => {
+  //       const checkToken = async () => {
+  //         try {
+  //           const res = await axios.get("https://myzoomapi.great-site.net/zoom_backend-main/src/api/generateCsrf.php", {
+  //             withCredentials: true
+  //           })
+  //           setToken(res.data.csrf_token);
+  //           console.log(res.data.csrf_token);
             
             
-          }catch (err) {
-            console.log(err);
-          }
-        }
-        checkToken()
-  }, [])
+  //         }catch (err) {
+  //           console.log(err);
+  //         }
+  //       }
+  //       checkToken()
+  // }, [])
 
-  useEffect(() => {
-    if (token) {
-      setValue("csrf_token", token);
-    }
-  }, [token, setValue]);
+  // useEffect(() => {
+  //   if (token) {
+  //     setValue("csrf_token", token);
+  //   }
+  // }, [token, setValue]);
   
 
   async function onSubmit(data){
-
-
-    console.log(data);
 
       
       let check = data.password
@@ -81,11 +81,15 @@ console.log(errors);
             withCredentials: true
           }
         );
-        if(res.status == 'success'){
+        if(res.data.status == 'success'){
              
-          console.log("RESPONSE FROM PHP:", res);
+          toast.success("Account created successfully!");
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000)
         }else{
-            console.log("RESPONSE FROM PHP:", res.data);
+            // console.log("RESPONSE FROM PHP:", res.data);
+            toast.error(res.data.message || "Signup failed. Please try again.");
         }
       } catch (err) {
         console.log("Error:", err);
@@ -98,19 +102,65 @@ console.log(errors);
     return(
         <>
             <PublicNav />
-          <div className="h-[100vh] bg-[#151922] w-full flex justify-center  items-center flex-col gap-5">
-            <h1 className="text-center text-4xl  font-bold text-[#2db4a8]">Join Zoom</h1>
-              <form onSubmit={handleSubmit(onSubmit)} className=" bg-[#102121] text-white p-10 rounded flex flex-col gap-5 lg:w-[40%] md:w-[60%] w-[90%]">
-                    <h1 className="text-center ">Sign up</h1>
+          <div className="h-[100vh] bg-gradient-to-b from-[#0B1215] to-[#111C22] w-full flex justify-center  items-center ">
+              <form onSubmit={handleSubmit(onSubmit)} className="
+                w-full
+                max-w-xl
+                bg-[#111C22]/90
+                backdrop-blur-xl
+                border
+                border-[#22313A]
+                rounded-3xl
+                p-8
+                md:p-10
+                shadow-2xl
+                shadow-black/30
+                flex
+                flex-col
+                gap-4
+                mt-20
+              ">
+                <div className="text-center flex flex-col gap-2">
+
+              <div className="
+                w-14 h-14
+                mx-auto
+                rounded-2xl
+                bg-gradient-to-br
+                from-[#39F3E2]
+                to-[#2ED3C4]
+                flex
+                items-center
+                justify-center
+                text-[#0B1215]
+                text-3xl
+                shadow-lg
+                shadow-[#39F3E2]/20
+              ">
+                <i className="bi bi-stars"></i>
+              </div>
+
+              <div>
+                <h1 className="text-4xl font-black text-white tracking-tight">
+                  Join Zoom
+                </h1>
+
+                <p className="text-[#94A3B8] mt-2">
+                  Create your account and start writing.
+                </p>
+              </div>
+
+            </div>
+                    {/* <h1 className="text-center ">Sign up</h1> */}
                    <div className="flex flex-col gap-2">
-                    <input 
+                    {/* <input 
                      {...register("csrf_token")}
                      id="csrf_token"
                      type="hidden" 
                      name="csrf_token" 
                     //  value={token}
-                     />
-                       <label htmlFor="username">Enter Your Username </label>
+                     /> */}
+                       <label className="text-[#E2E8F0] font-medium text-sm" htmlFor="username">Enter Your Username </label>
                     <input
                       {...register("username")}
                       // onChange={(e) =>{setUsername(e.target.value)}}
@@ -118,14 +168,28 @@ console.log(errors);
                       name="username"
                       autoComplete="username"
                       // value={username}  
-                      className="bg-black p-2 rounded focus:border-[#39f3e2] focus:border outline-none" 
+                      className="
+                          bg-[#0B1215]
+                          border
+                          border-[#22313A]
+                          rounded-2xl
+                          px-4
+                          py-3
+                          text-white
+                          placeholder:text-[#64748B]
+                          outline-none
+                          transition
+                          focus:border-[#39F3E2]
+                          focus:ring-4
+                          focus:ring-[#39F3E2]/10
+                        "
                      type="text" 
                     />
                     <p className="text-red-500">{errors.username?.message}</p>
                    </div>
                    
                    <div className="flex flex-col gap-2">
-                     <label htmlFor="email">Enter Your Email</label>
+                     <label className="text-[#E2E8F0] font-medium text-sm" htmlFor="email">Enter Your Email</label>
                     <input
                       {...register("email")}
                      id="email"
@@ -133,13 +197,27 @@ console.log(errors);
                      autoComplete="email"
                     //  onChange={(e) => setEmail(e.target.value)} 
                     //  value={email} 
-                     className="bg-black p-2 rounded outline-none focus:border  focus:border-[#39f3e2]"
+                     className="
+  bg-[#0B1215]
+  border
+  border-[#22313A]
+  rounded-2xl
+  px-4
+  py-3
+  text-white
+  placeholder:text-[#64748B]
+  outline-none
+  transition
+  focus:border-[#39F3E2]
+  focus:ring-4
+  focus:ring-[#39F3E2]/10
+"
                      type="email" 
                     />
-                     <p className="text-red-500">{errors.email?.message}</p>
+                     <p className="text-red-400 text-sm font-medium">{errors.email?.message}</p>
                    </div>
                    <div className="flex flex-col gap-2">
-                     <label htmlFor="password">Enter Your Password</label>
+                     <label className="text-[#E2E8F0] font-medium text-sm" htmlFor="password">Enter Your Password</label>
                     <input 
                       // {...register("password", { maxLength: { value: 10, message: "it should be more than 10"} , required: { value :true, message: "password is requird"} })}
                       {...register("password")}
@@ -148,13 +226,27 @@ console.log(errors);
                      autoComplete="new-password"
                     //  onChange={(e) => setPassword(e.target.value)} 
                     //  value={password} 
-                     className="bg-black p-2 rounded outline-none focus:border  focus:border-[#39f3e2]"
+                     className="
+                          bg-[#0B1215]
+                          border
+                          border-[#22313A]
+                          rounded-2xl
+                          px-4
+                          py-3
+                          text-white
+                          placeholder:text-[#64748B]
+                          outline-none
+                          transition
+                          focus:border-[#39F3E2]
+                          focus:ring-4
+                          focus:ring-[#39F3E2]/10
+                        "
                      type="password" 
                     />
-                   <p className="text-red-500">{errors.password?.message}</p>
+                   <p className="text-red-400 text-sm font-medium">{errors.password?.message}</p>
                    </div>
                      <div className="flex flex-col gap-2">
-                     <label htmlFor="confirmPassword">Confirm Password</label>
+                     <label className="text-[#E2E8F0] font-medium text-sm" htmlFor="confirmPassword">Confirm Password</label>
                     <input 
                       {...register("confirmPassword")}
                      id="confirmPassword"
@@ -162,15 +254,41 @@ console.log(errors);
                      autoComplete="new-password"
                     //  onChange={(e) => setConfirmPassword(e.target.value)} 
                     //  value={confirmPassword} 
-                     className="bg-black p-2 rounded outline-none focus:border  focus:border-[#39f3e2]"
+                     className="
+                          bg-[#0B1215]
+                          border
+                          border-[#22313A]
+                          rounded-2xl
+                          px-4
+                          py-3
+                          text-white
+                          placeholder:text-[#64748B]
+                          outline-none
+                          transition
+                          focus:border-[#39F3E2]
+                          focus:ring-4
+                          focus:ring-[#39F3E2]/10
+                        "
                      type="password" 
                     />
-                    <p className="text-red-500">{errors.confirmPassword?.message}</p>
+                    <p className="text-red-400 text-sm font-medium">{errors.confirmPassword?.message}</p>
                    </div>
-                   {checkPassword && <p>Password does not match</p>}
+                   {checkPassword && <p className="text-red-400 text-sm font-medium">Password does not match</p>}
                   <div className="flex flex-col gap-5">
-                      <button type="submit" className="bg-[#39f3e2]/60 px-5 py-2 font-bold rounded text-[#102121] mp-5">Sign Up</button>
-                      <p className="text-center">Alredy have an account? <Link to="/login" className="text-[#39f3e2] cursor-pointer hover:border-b-1">Click here to Login</Link></p>
+                      <button type="submit" className="
+  w-full
+  py-3
+  rounded-2xl
+  bg-[#39F3E2]
+  hover:bg-[#2ED3C4]
+  text-[#0B1215]
+  font-bold
+  transition-all
+  duration-300
+  shadow-lg
+  shadow-[#39F3E2]/20
+">Sign Up</button>
+                      <p className="text-center text-[#94A3B8] text-sm">Alredy have an account? <Link to="/login" className="text-[#39f3e2] cursor-pointer hover:border-b-1">Click here to Login</Link></p>
                   </div>
 
               </form>

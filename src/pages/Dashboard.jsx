@@ -57,7 +57,7 @@ export function Dashbord() {
   return (
     <>
       <PublicNav auth={auth} user={user} />
-      <div className="pb-25 h-screen overflow-hidden bg-gradient-to-br from-[#0B1215] via-[#111C22] to-[#0F1720]">
+      <div className="pb-25 h-screen overflow-hidden  bg-gradient-to-b from-[#0B1215] to-[#111C22]">
         <div className="pt-[200px] flex md:flex-row flex-col items-start justify-start md:justify-between md:items-center lg:w-[60%] md:w-[80%] w-[90%] mx-auto">
           <div className=" flex flex-col gap-2">
             <h1 className="flex items-center gap-2"><p className="text-white font-bold text-4xl">HI,</p> <p className="text-white font-bold text-4xl">{userName} 👋</p>  </h1>
@@ -146,11 +146,11 @@ export function Dashbord() {
         )}
 
         {myPosts.length == 0 && (
-          <div className="h-screen bg-[#0f1a1d]">
-            <div className="flex flex-col justify-center gap-5 hover:border-[#39f3e2]/80 hover:border items-center w-[60%] text-gray-500 rounded-2xl mx-auto mt-[30px] bg-black py-[50px]">
+          <div className="h-screen  bg-gradient-to-b from-[#0B1215] to-[#111C22]">
+            <div className="flex flex-col mt-10 justify-center gap-5 hover:border-[#39f3e2]/80  hover:border items-center w-[60%] text-gray-500 rounded-2xl mx-auto mt-[30px] py-[50px] bg-[#111C22]/90  backdrop-blur-xl border border-[#22313A] transition duration-300">
               <i className="text-3xl bi bi-pencil-square"></i>
               <p>You haven't written anything yet.</p>
-              <Link to="/createpost" className="p-2 bg-[#39f3e2]/80 rounded">Write your first post</Link>
+              <Link to="/createpost" className="py-2 px-3 bg-[#39f3e2]/80 rounded-xl hover:scale-105 transition duration-300 text-[#0B1215]">Write your first post</Link>
             </div>
           </div>
         )}

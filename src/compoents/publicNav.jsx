@@ -4,9 +4,11 @@ import { useState, useEffect } from "react"
 // import { useContext } from "react"
 import { useLogout } from "./signOut"
 import { useNavigate } from "react-router-dom"
+import ConfirmModal from "./modal/confirmModal"
 
 export function PublicNav({ auth }) {
   const [isNavVisible, setIsNavVisible] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   // const { user } = useContext(UserContext)
   const user =  JSON.parse(localStorage.getItem("user"));
 
@@ -97,12 +99,12 @@ export function PublicNav({ auth }) {
             <div className="flex items-center gap-2">
               <NavLink
                 to="/login"
-                className="bg-[#39f3e2]/70 px-5 py-2 font-bold rounded text-[#102121]">
+                className="bg-[#39f3e2]/90 px-5 py-2 font-bold rounded text-[#102121]">
                 Sign in
               </NavLink>
               <NavLink
                 to="/signup"
-                className="transition duration-300 box-border bg-[#102121] border border-[#39f3e2] text-[#39f3e2] px-5 py-2 font-bold rounded hover:bg-[#39f3e2]/70 hover:text-[#102121]">
+                className="transition duration-300 box-border bg-[#102121] border border-[#39f3e2] text-[#39f3e2] px-5 py-2 font-bold rounded hover:bg-[#39f3e2]/90 hover:text-[#102121]">
                 Get Started
               </NavLink>
             </div>
@@ -242,13 +244,14 @@ export function PublicNav({ auth }) {
 
           {/* Logout */}
           <div className="border-t border-gray-700">
-            <button onClick={logOut} className="w-full text-left px-4 py-2 text-sm hover:bg-red-500/20 text-red-400 transition">
+            <button onClick={() => setIsModalOpen(true)} className="w-full text-left px-4 py-2 text-sm hover:bg-red-500/20 text-red-400 transition">
               <i className="bi bi-box-arrow-right mr-2"></i>
               Sign Out
             </button>
           </div>
 
         </div>
+            <ConfirmModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={logOut} confirmText="Sign Out" cancelText="Cancel" title="Confirm Sign Out" message="Are you sure you want to sign out?" />
       </div>
    )} 
     </>

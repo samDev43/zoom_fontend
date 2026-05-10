@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { UserContext } from "../UserContext"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
+import toast from "react-hot-toast"
 // import { ca } from "zod/locales"
 
 const productSchema = z.object({
@@ -51,8 +52,15 @@ export function CreatePost(){
             withCredentials: true,
          });
          // const result = await res.json();
-         console.log("FROM BACKEND" + " " + res.data);
-         navigate("/")
+         // console.log("FROM BACKEND" + " " + res.data);
+         if(res.data.status === "success") {
+            toast.success("Post created successfully!");
+         } else {
+            toast.error(res.data.message || "Failed to create post. Please try again.");
+         }
+         setTimeout(() => {
+            navigate("/");
+         }, 2000)
       }catch (err) {
          console.log(err);
       }

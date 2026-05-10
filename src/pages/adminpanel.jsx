@@ -137,6 +137,7 @@ export function AdminPanel() {
                             rounded-xl
                             font-medium
                             transition
+                            cursor-pointer
                             ${check
                                     ? "bg-[#39F3E2] text-[#0B1215]"
                                     : "text-[#94A3B8] hover:text-white"
@@ -150,6 +151,7 @@ export function AdminPanel() {
                         rounded-xl
                         font-medium
                         transition
+                        cursor-pointer
                         ${!check
                                     ? "bg-[#39F3E2] text-[#0B1215]"
                                     : "text-[#94A3B8] hover:text-white"
@@ -226,13 +228,13 @@ export function AdminPanel() {
                                 )
                             )}
                             
-                        
+
 
                             {check2 && (
                                 posts?.length > 0 ? (
                                     <>
                                         <thead >
-                                            <tr className="px-4 border-b ">
+                                            <tr className="px-4 border-b  text-[#94A3B8]">
                                                 <th className="text-left p-5">Title</th>
                                                 <th className="text-left p-5">Author</th>
                                                 <th className="text-left p-5">Data</th>
