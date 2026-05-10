@@ -15,7 +15,7 @@ export function Home(){
                 const  getUserInfo = async () => {
                     try{
                          let res =  await axios.get(
-                        "https://myzoomapi.great-site.net/api/getUser.php",
+                        "http://localhost/ZOOM_BACKEND/api/getUser.php",
                         {
                             headers: { "Authorization": `Bearer ${token}` },
                             withCredentials: true

@@ -14,14 +14,14 @@ export function PublicBody() {
   // const [ display, setDisplay ] = useState([])
   const [ searchTerm, setSearchTerm ] = useState('');
   // const [ userName, setUserName ] = useState('');
-      let imageUrl = "https://myzoomapi.great-site.net/api/public/uploads/"
+      let imageUrl = "http://localhost/ZOOM_BACKEND/api/public/uploads/"
   // const token = localStorage.getItem('token')
   
   
   useEffect(() =>{
     const getAllPost = async () => {
       const res = await axios.get(
-        "https://myzoomapi.great-site.net/api/getallposts.php"
+        "http://localhost/ZOOM_BACKEND/api/getallposts.php"
       );      
         setAllPost(res.data.posts)
         

@@ -9,7 +9,7 @@ export async function  deletPost (postId, setPosts, setToHome) {
     
     try {
          const res = await axios.post(
-        "https://myzoomapi.great-site.net/api/deletPost.php",
+        "http://localhost/ZOOM_BACKEND/api/deletPost.php",
         {post_id : postId},
         {
             headers : {"Authorization" : `Bearer ${token}`},

@@ -24,14 +24,14 @@ export function SinglePost() {
   const navigate = useNavigate()
   const auth = isLoggedIn();
   // const token = localStorage.getItem('token')
-  let ImageUrl = "https://myzoomapi.great-site.net/api/public/uploads/"
+  let ImageUrl = "http://localhost/ZOOM_BACKEND/api/public/uploads/"
 
   useEffect(() => {
     const getSinglePost = async () => {
       console.log(id);
 
       const res = await axios.get(
-        `https://myzoomapi.great-site.net/api/get_single_post.php?id=${id}`,
+        `http://localhost/ZOOM_BACKEND/api/get_single_post.php?id=${id}`,
       )
       console.log(res.data);
       setPost(res.data.data)

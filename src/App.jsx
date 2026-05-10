@@ -10,6 +10,7 @@ import  { UserProvider }  from "./UserProvider"
 import  { AdminPanel } from "./pages/adminpanel"
 import { ProtectedRoute } from "./compoents/ProtectedRoute"
 import { AdminRoute } from "./compoents/adminRoute"
+import { Test } from "./pages/test"
 
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />    
         <Route path="/posts/:id" element={<SinglePost />} />
-        <Route path="adminpanel" element={<ProtectedRoute> <AdminRoute> <AdminPanel /></AdminRoute> </ProtectedRoute>} />
+        <Route path="/adminpanel" element={<ProtectedRoute> <AdminRoute> <AdminPanel /></AdminRoute> </ProtectedRoute>} />
+        <Route path="/test" element={<Test />} />
      </Routes>
    </UserProvider>
   )

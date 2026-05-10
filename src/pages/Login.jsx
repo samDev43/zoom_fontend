@@ -22,7 +22,7 @@ export function Login(){
     // useEffect(()=> {
     //     const checkLogin = async () => {
     //         try {
-    //             const res = await axios.get("https://myzoomapi.great-site.net/api/checkLogin.php", {
+    //             const res = await axios.get("http://localhost/ZOOM_BACKEND/api/checkLogin.php", {
     //                 withCredentials: true
     //             })
     //             console.log(res.data);
@@ -37,11 +37,11 @@ export function Login(){
         console.log(data);
         try {
              let res = await axios.post(
-            "https://myzoomapi.great-site.net/api/login.php",
+            "http://localhost/ZOOM_BACKEND/api/login.php",
             data,
             {
-                 headers: { "Content-Type": "application/json" },
-                  withCredentials: true
+                 headers: { "Content-Type": "application/json" }
+                //   withCredentials: true
              }
         )
         console.log('responce from php', res.data.message);

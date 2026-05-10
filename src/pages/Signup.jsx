@@ -34,7 +34,7 @@ console.log(errors);
   // useEffect(() => {
   //       const checkToken = async () => {
   //         try {
-  //           const res = await axios.get("https://myzoomapi.great-site.net/api/generateCsrf.php", {
+  //           const res = await axios.get("http://localhost/ZOOM_BACKEND/api/generateCsrf.php", {
   //             withCredentials: true
   //           })
   //           setToken(res.data.csrf_token);
@@ -72,13 +72,13 @@ console.log(errors);
 
       try {
         let res = await axios.post(
-          "https://myzoomapi.great-site.net/api/signup.php",
+          "http://localhost/ZOOM_BACKEND/api/signup.php",
           data,
           {
             headers: {
               "Content-Type": "application/json"
-            },
-            withCredentials: true
+            }
+            // withCredentials: true
           }
         );
         if(res.data.status == 'success'){
