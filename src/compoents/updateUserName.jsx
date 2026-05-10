@@ -10,7 +10,7 @@ export async function updateUserName(newUserName){
     const token = localStorage.getItem("token");
 
     try{
-       const res = await axios.post("https://myzoomapi.great-site.net/zoom_backend-main/src/api/updateUserName.php", { username: newUserName }, {
+       const res = await axios.post("https://myzoomapi.great-site.net/api/updateUserName.php", { username: newUserName }, {
         headers: {
             "Authorization": `Bearer ${token}`
         }
@@ -25,7 +25,7 @@ export async function updateEmail(newEmail){
     const token = localStorage.getItem("token");
 
     try{
-       const res = await axios.post("https://myzoomapi.great-site.net/zoom_backend-main/src/api/updateEmail.php", { email: newEmail }, {
+       const res = await axios.post("https://myzoomapi.great-site.net/api/updateEmail.php", { email: newEmail }, {
         headers: {
             "Authorization": `Bearer ${token}`
         }
@@ -40,7 +40,7 @@ export async function updatePassword(newPassword){
     let token = localStorage.getItem("token");
     
     try{
-       const res = await axios.post("https://myzoomapi.great-site.net/zoom_backend-main/src/api/updatePassword.php", { password: newPassword }, {
+       const res = await axios.post("https://myzoomapi.great-site.net/api/updatePassword.php", { password: newPassword }, {
         headers: { "Authorization": `Bearer ${token}` },
     });
     console.log(res.data);
@@ -54,7 +54,7 @@ export async function deleteAccount(AccountId, role, setUsers){
 
     
     try{
-        const res = await axios.post("https://myzoomapi.great-site.net/zoom_backend-main/src/api/deleteAccount.php", {id: AccountId}, {
+        const res = await axios.post("https://myzoomapi.great-site.net/api/deleteAccount.php", {id: AccountId}, {
             headers: { "Authorization": `Bearer ${token}` },   
         });
         console.log(res.data);

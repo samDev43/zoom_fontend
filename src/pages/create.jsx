@@ -42,7 +42,7 @@ export function CreatePost(){
 
          
       try{
-         const res = await axios.post("https://myzoomapi.great-site.net/zoom_backend-main/src/api/createpost.php", 
+         const res = await axios.post("https://myzoomapi.great-site.net/api/createpost.php", 
             formData,
             {
             headers: {

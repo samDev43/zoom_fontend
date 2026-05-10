@@ -15,7 +15,7 @@ export function AdminRoute({ children }) {
         }
         const gotUserInfo = async () => {
             try{
-                const res = await axios.get("https://myzoomapi.great-site.net/zoom_backend-main/src/api/getUser.php", {
+                const res = await axios.get("https://myzoomapi.great-site.net/api/getUser.php", {
                     headers: { "Authorization": `Bearer ${token}` },
                     withCredentials: true
                 });                

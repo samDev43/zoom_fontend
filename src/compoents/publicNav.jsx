@@ -12,7 +12,7 @@ export function PublicNav({ auth }) {
   // const { user } = useContext(UserContext)
   const user =  JSON.parse(localStorage.getItem("user"));
 
-  let ImageUrl = "https://myzoomapi.great-site.net/zoom_backend-main/src/api/public/uploads/"
+  let ImageUrl = "https://myzoomapi.great-site.net/api/public/uploads/"
 
   const navigate = useNavigate();
   const logOut = useLogout(navigate);

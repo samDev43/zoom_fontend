@@ -11,7 +11,7 @@ export async function upLoadImage(e)  {
     formData.append("image", file);
     const token = localStorage.getItem("token");
     try{
-        const res = await axios.post("https://myzoomapi.great-site.net/zoom_backend-main/src/api/uploadProfile.php", formData, {
+        const res = await axios.post("https://myzoomapi.great-site.net/api/uploadProfile.php", formData, {
         headers: {
             "Authorization": `Bearer ${token}`
         }
