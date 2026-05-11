@@ -154,7 +154,7 @@ export function PublicNav({ auth }) {
   hover:border-[#39F3E2]
   transition duration-300
 ">
-                <button>
+                <button className="text-2xl text-[#39F3E2] font-semibold">
                   {user?.profile ? (
                     <img
                       src={ImageUrl + user.profile}

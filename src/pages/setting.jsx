@@ -6,11 +6,13 @@ import { Footer } from "../compoents/footer";
 import  { upLoadImage }  from "../compoents/uploadImage";
 import { useState } from "react";
 import { updateUserName, updateEmail, updatePassword, deleteAccount } from "../compoents/updateUserName";
+import ConfirmModal from "../compoents/modal/confirmModal";
 
 export function Setting(){
     const [ newUserName, setNewUserName ] = useState("");
     const [ newEmail, setNewEmail ] = useState("");
      const [ newPassword, setNewPassword ] = useState("");
+     const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
     const { user } = useContext(UserContext);
     const auth = isLoggedIn();
     return(
@@ -64,7 +66,8 @@ export function Setting(){
                    <div className="flex flex-col items-start mt-2 gap-2">
                     <h1>Delete account</h1>
                     <p className="w-[70%] text-gray-500">Permanently delete your account, all your posts, and your profile. This cannot be undone.</p>
-                    <button className="px-5 py-2 rounded-lg bg-red-600" onClick={() => {deleteAccount()}}>Delete my account</button>
+                    <button className="px-5 py-2 rounded-lg bg-red-600" onClick={() => {setOpenDeleteModal(true)}}>Delete my account</button>
+                    <ConfirmModal open={openDeleteModal} onClose={() => setOpenDeleteModal(false)} onConfirm={() => {deleteAccount()}} cancelText="Cancel" title="Delete Account" message="Are you sure you want to delete your account? This action cannot be undone." />
                    </div>
                 </div>
                </div>

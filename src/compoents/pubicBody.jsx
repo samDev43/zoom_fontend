@@ -24,7 +24,6 @@ export function PublicBody() {
         "https://zoom-backend-l0uq.onrender.com/api/getallposts.php"
       );      
         setAllPost(res.data.posts)
-        
   }
   getAllPost()
 }, [])

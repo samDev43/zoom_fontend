@@ -21,6 +21,7 @@ export function Home(){
                             withCredentials: true
                         }
                     );
+                     console.log( res.data);
                     setUser({
                         username: res.data.data.username,
                         email: res.data.data.email,

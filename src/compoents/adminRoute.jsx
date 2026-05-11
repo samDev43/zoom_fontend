@@ -20,6 +20,8 @@ export function AdminRoute({ children }) {
                     withCredentials: true
                 });                
                 setUserRole(res.data.data.role);
+                console.log(res.data.data);
+                
                 setLoading(true)
             }catch(err){
                 console.log(err);

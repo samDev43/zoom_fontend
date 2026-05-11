@@ -33,7 +33,9 @@ export function AdminPanel() {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                console.log(res.data);
                 setUsers(res.data.users);
+                
             } catch (err) {
                 console.log(err);
             }
@@ -192,7 +194,7 @@ export function AdminPanel() {
                                                 users.map((userr) => (
                                                     <tr key={userr.id} className=" border-b border-b border-[#22313A] hover:bg-[#16242C]/60 transition">
                                                         <td className="text-left p-5">{userr.username}</td>
-                                                        <td className="text-left p-5">{formatDate(userr.timestamp)}</td>
+                                                        <td className="text-left p-5">{formatDate(userr.created_at)}</td>
                                                         <td className="text-left p-5">{userr.role}</td>
                                                         <td className="text-left p-5">
                                                             <div>
@@ -221,7 +223,7 @@ export function AdminPanel() {
                                     </>
                                 ) : (
                                     <tfoot>
-                                        <tr className="flex justify-center items-center w-full bg-black rounded-lg mt-5">
+                                        <tr className="flex justify-center items-center w-full bg-[#111C22]  rounded-lg mt-5">
                                             <td className="py-20">No Post yet</td>
                                         </tr>
                                     </tfoot>

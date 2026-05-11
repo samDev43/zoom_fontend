@@ -1,6 +1,8 @@
 import axios from "axios"   
 import { useState } from "react";
 import z from "zod";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
   const commentSchema = z.object({
     comment : z.string().nonempty("comment is required").min(1, "Input should not be empty"),
@@ -8,19 +10,19 @@ import z from "zod";
 
 export function Comment({ postId, setComments  }) {
     const [ comment, setComment ] = useState("");
+    const navigate = useNavigate();
 
     async function postComment(){
         const result = commentSchema.safeParse({ comment });
         
         if (!result.success) {
             console.log('failed');
-            
-            console.log(result.error.format());
+            toast.error("Invalid comment");
             return;
         }
         let token =  localStorage.getItem("token");
         if(!token){
-            console.log("you need to login to post a comment");
+            toast.error("You need to login to post a comment");
             return;
         }
         try{
@@ -35,9 +37,16 @@ export function Comment({ postId, setComments  }) {
                 
             )
             console.log(res.data);
-            
-            setComments(res.data.comments);
-            setComment("") // Clear the input field after posting the comment
+            if(res.data.status === "success"){
+                setComments(res.data.comments);
+                setComment("")
+            }else{
+                toast.error(res.data.message || "Failed to post comment");
+                setComment("")
+                setTimeout(() => {
+                    navigate("/login");
+                }, 1500)
+            }
             
         }catch (err) {
         console.log(err);

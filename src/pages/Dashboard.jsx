@@ -9,7 +9,8 @@ import { UserContext } from "../UserContext"
 import { useContext } from "react"
 import { deletPost } from "../compoents/deletPost"
 import ConfirmModal from "../compoents/modal/confirmModal"
-// import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 
 
@@ -18,6 +19,7 @@ export function Dashbord() {
   const [myPosts, setMyPosts] = useState([]);
   const [userName, setUserName] = useState('');
     const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
+    const navigate = useNavigate();
 
   const { user } = useContext(UserContext);
 
@@ -40,9 +42,17 @@ export function Dashbord() {
           }
         );
        
-
-        setMyPosts(res.data.data);
-        setUserName(res.data.user);
+        if(res.data.status === "success") {
+          console.log(res.data);
+          setMyPosts(res.data.data);
+          setUserName(res.data.user);
+        }else{
+          toast.error("Failed to fetch posts");
+           setTimeout(() => {
+            navigate("/login");
+           },1500)
+        }
+        
 
       }
       catch (err) {

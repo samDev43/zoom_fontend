@@ -16,6 +16,8 @@ export async function  deletPost (postId, setPosts, setToHome) {
             withCredentials: true,
         },
     )
+    console.log(res.data);
+    
       if(res.data.status === "success"){
         if(setToHome) setToHome(true)
         if(setPosts) setPosts(prevPosts => prevPosts.filter(post => post.id !== postId))
