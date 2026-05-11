@@ -14,7 +14,7 @@ export function PublicBody() {
   // const [ display, setDisplay ] = useState([])
   const [ searchTerm, setSearchTerm ] = useState('');
   // const [ userName, setUserName ] = useState('');
-      let imageUrl = "https://zoom-backend-l0uq.onrender.com/api/public/uploads/"
+      let imageUrl = "https://zoom-backend-l0uq.onrender.com/api/"
   // const token = localStorage.getItem('token')
   
   
