@@ -52,12 +52,14 @@ export function CreatePost(){
             withCredentials: true,
          });
          // const result = await res.json();
-         // console.log("FROM BACKEND" + " " + res.data);
+         console.log("FROM BACKEND" + " " + res.data);
          if(res.data.status === "success") {
             toast.success("Post created successfully!");
          } else {
             toast.error(res.data.message || "Failed to create post. Please try again.");
+            console.log("FROM BACKEND" + " " + res.data);
          }
+         console.log("FROM BACKEND" + " " + res.data);
          setTimeout(() => {
             navigate("/");
          }, 2000)
