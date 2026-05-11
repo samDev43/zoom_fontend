@@ -44,9 +44,9 @@ export function Login(){
                   withCredentials: true
              }
         )
-        console.log('responce from php', res.data.message);
+        console.log('responce from php', res.data);
         if(res.data.status === "success") {
-            console.log(res.data.token);
+            // console.log(res.data.token);
             
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("isLoggedIn", "true")
