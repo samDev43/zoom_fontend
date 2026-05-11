@@ -26,7 +26,8 @@ export function Home(){
                         username: res.data.data.username,
                         email: res.data.data.email,
                         profile: res.data.data.profile_picture || null,
-                        role: res.data.data.role
+                        role: res.data.data.role,
+                        currentUserId: res.data.data.id
                     })
                     }catch(err){
                         console.log(err);

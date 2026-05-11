@@ -19,6 +19,7 @@ export function SinglePost() {
   const [toHome, setToHome] = useState(false)
   const [comments, setComments] = useState([]);
   const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
+  const token = JSON.parse(localStorage.getItem("token"));
   let postId = post.id
 
   const navigate = useNavigate()
@@ -55,24 +56,24 @@ export function SinglePost() {
         <div className="max-w-4xl w-[92%] mx-auto">
           <div className="pt-[160px]">
             <Link to="/" className="
-    inline-flex
-    items-center
-    gap-2
-    text-[#94A3B8]
-    hover:text-[#39F3E2]
-    transition
-    text-sm
-    font-medium
-  ">   <i className="bi bi-arrow-left"></i>  <p className="text-white">Back to all posts</p></Link>
-            <h1 className="
-  text-white
-  text-4xl
-  md:text-6xl
-  font-black
-  tracking-tight
-  leading-tight
-  py-6
-">{post.title}</h1>
+                  inline-flex
+                  items-center
+                  gap-2
+                  text-[#94A3B8]
+                  hover:text-[#39F3E2]
+                  transition
+                  text-sm
+                  font-medium
+                ">   <i className="bi bi-arrow-left"></i>  <p className="text-white">Back to all posts</p></Link>
+                          <h1 className="
+                text-white
+                text-4xl
+                md:text-6xl
+                font-black
+                tracking-tight
+                leading-tight
+                py-6
+              ">{post.title}</h1>
             <div className="flex flex-col md:flex-row md:justify-between md:items-center">
               <div className="flex items-center gap-5 text-lg text-white">
                 <div className="flex items-center gap-2 text-[#94A3B8]">
@@ -85,25 +86,26 @@ export function SinglePost() {
                 </div>
               </div>
               {/* <div onClick={() => { deletPost(post.id, setToHome) }} className=" */}
-              <div onClick={() => { setOpenDeleteModal(true) }} className="
-    flex
-    items-center
-    gap-2
-    px-5
-    py-3
-    rounded-2xl
-    bg-[#16242C]
-    border
-    border-[#22313A]
-    text-red-400
-    hover:bg-red-500
-    hover:text-white
-    transition-all
-    duration-300
-    cursor-pointer
-  ">
+              {token.currentUserId === post.user_id && (
+                <div onClick={() => { setOpenDeleteModal(true) }} className="
+                      flex
+                      items-center
+                      gap-2
+                      px-5
+                      py-3
+                      rounded-2xl
+                      bg-[#16242C]
+                      border
+                      border-[#22313A]
+                      text-red-400
+                      hover:bg-red-500
+                      hover:text-white
+                      transition-all
+                      duration-300
+                      cursor-pointer
+                    ">
                 <i className="bi bi-trash"></i>
-                <p >Delete</p></div>
+                <p >Delete</p></div>)}
                 <ConfirmModal
                     isOpen={openDeleteModal}
                     onClose={() => setOpenDeleteModal(false)}
