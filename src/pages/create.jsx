@@ -160,7 +160,7 @@ export function CreatePost(){
                            type="file"
                            id="file-input" 
                            name="file-input" 
-                           className={selectedImage ? "hidden" : "block"}      
+                           className={selectedImage ? "block" : "hidden"}      
                            onChange={(e) => {
                               setValue("cover_image", e.target.files);
                                if (e.target.files.length > 0) {
