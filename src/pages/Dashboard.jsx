@@ -9,7 +9,7 @@ import { UserContext } from "../UserContext"
 import { useContext } from "react"
 import { deletPost } from "../compoents/deletPost"
 import ConfirmModal from "../compoents/modal/confirmModal"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 
 
@@ -19,17 +19,16 @@ export function Dashbord() {
   const [myPosts, setMyPosts] = useState([]);
   const [userName, setUserName] = useState('');
     const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
   const { user } = useContext(UserContext);
-
   const auth = isLoggedIn()
   // let imageUrl = "https://zoom-backend-l0uq.onrender.com/api/public/uploads/"
   useEffect(() => {
     // Fetch user data and posts here using axios
     const getUserPosts = async () => {
       let token = localStorage.getItem("token");
-
+      
       try {
         const res = await axios.get(
           "https://zoom-backend-l0uq.onrender.com/api/getuserposts.php",
@@ -38,7 +37,7 @@ export function Dashbord() {
               "Authorization": `Bearer ${token}`,
             },
             withCredentials: true,
-
+            
           }
         );
        
@@ -49,7 +48,7 @@ export function Dashbord() {
         }else{
           toast.error("Failed to fetch posts");
            setTimeout(() => {
-            navigate("/login");
+            window.location = "/login";
            },1500)
         }
         

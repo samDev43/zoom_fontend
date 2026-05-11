@@ -14,8 +14,8 @@ import toast from "react-hot-toast"
 
 const productSchema = z.object({
       title : z.string().nonempty("title is required").max(100, "it should be more than 100"),
-      excerpt : z.string().max(50, "excerpt should be less than 50 characters").nonempty("excerpt is required"),
-      content : z.string().nonempty("content is required").max(1000, "content should be less than 1000 characters"),
+      excerpt : z.string().max(200, "excerpt should be less than 200 characters").nonempty("excerpt is required"),
+      content : z.string().nonempty("content is required").max(2000, "content should be less than 2000 characters"),
       cover_image : z.any().optional()
 });
 export function CreatePost(){
