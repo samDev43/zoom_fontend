@@ -9,8 +9,9 @@ import { updateUserName, updateEmail, updatePassword, deleteAccount } from "../c
 import ConfirmModal from "../compoents/modal/confirmModal";
 
 export function Setting(){
-    const [ newUserName, setNewUserName ] = useState("");
-    const [ newEmail, setNewEmail ] = useState("");
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const [ newUserName, setNewUserName ] = useState(userInfo.username || "");
+    const [ newEmail, setNewEmail ] = useState(userInfo.email || "");
      const [ newPassword, setNewPassword ] = useState("");
      const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
     const { user } = useContext(UserContext);
@@ -39,7 +40,7 @@ export function Setting(){
                     </div>
                     <div className="flex flex-col items-start gap-2 text-white">
                         <p>Username</p>
-                        <input type="text" value={newUserName} onChange={(e) => {setNewUserName(e.target.value)}} className="p-2 w-full  bg-[#14181f] text-white placeholder:text-gray-500 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input type="text" value={newUserName} onChange={(e) => {setNewUserName(e.target.value)}} className="p-2 w-full  bg-[#14181f] text-white placeholder:text-gray-500 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" />
                         <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg" onClick={() => updateUserName(newUserName)} >save</button>
                     </div>
                 </div>
