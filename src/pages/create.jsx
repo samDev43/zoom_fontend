@@ -10,6 +10,7 @@ import { UserContext } from "../UserContext"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
+import { useState } from "react"
 // import { ca } from "zod/locales"
 
 const productSchema = z.object({
@@ -21,6 +22,7 @@ const productSchema = z.object({
 export function CreatePost(){
    const { user } = useContext(UserContext);
    const { register, handleSubmit, setValue, formState: { errors } } = useForm({resolver: zodResolver(productSchema)});
+   const [selectedImage, setSelectedImage] = useState(false);
    // console.log(errors);
    // console.log(user.username);
    
@@ -158,9 +160,12 @@ export function CreatePost(){
                            type="file"
                            id="file-input" 
                            name="file-input" 
-                           className="hidden"      
+                           className={selectedImage ? "hidden" : "block"}      
                            onChange={(e) => {
-                              setValue("cover_image", e.target.files)
+                              setValue("cover_image", e.target.files);
+                               if (e.target.files.length > 0) {
+                                 setSelectedImage(true);
+                              }
                            }}
                          />
                    </label>
