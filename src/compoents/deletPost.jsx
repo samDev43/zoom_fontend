@@ -9,7 +9,7 @@ export async function  deletPost (postId, setPosts, setToHome) {
     
     try {
          const res = await axios.post(
-        "http://localhost/ZOOM_BACKEND/api/deletPost.php",
+        "https://zoom-backend-l0uq.onrender.com/api/deletPost.php",
         {post_id : postId},
         {
             headers : {"Authorization" : `Bearer ${token}`},

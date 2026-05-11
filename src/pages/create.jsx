@@ -42,7 +42,7 @@ export function CreatePost(){
 
          
       try{
-         const res = await axios.post("http://localhost/ZOOM_BACKEND/api/createpost.php", 
+         const res = await axios.post("https://zoom-backend-l0uq.onrender.com/api/createpost.php", 
             formData,
             {
             headers: {

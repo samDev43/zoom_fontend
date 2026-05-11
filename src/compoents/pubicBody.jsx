@@ -14,14 +14,14 @@ export function PublicBody() {
   // const [ display, setDisplay ] = useState([])
   const [ searchTerm, setSearchTerm ] = useState('');
   // const [ userName, setUserName ] = useState('');
-      let imageUrl = "http://localhost/ZOOM_BACKEND/api/public/uploads/"
+      let imageUrl = "https://zoom-backend-l0uq.onrender.com/api/public/uploads/"
   // const token = localStorage.getItem('token')
   
   
   useEffect(() =>{
     const getAllPost = async () => {
       const res = await axios.get(
-        "http://localhost/ZOOM_BACKEND/api/getallposts.php"
+        "https://zoom-backend-l0uq.onrender.com/api/getallposts.php"
       );      
         setAllPost(res.data.posts)
         

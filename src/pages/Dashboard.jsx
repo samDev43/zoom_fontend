@@ -22,7 +22,7 @@ export function Dashbord() {
   const { user } = useContext(UserContext);
 
   const auth = isLoggedIn()
-  // let imageUrl = "http://localhost/ZOOM_BACKEND/api/public/uploads/"
+  // let imageUrl = "https://zoom-backend-l0uq.onrender.com/api/public/uploads/"
   useEffect(() => {
     // Fetch user data and posts here using axios
     const getUserPosts = async () => {
@@ -30,7 +30,7 @@ export function Dashbord() {
 
       try {
         const res = await axios.get(
-          "http://localhost/ZOOM_BACKEND/api/getuserposts.php",
+          "https://zoom-backend-l0uq.onrender.com/api/getuserposts.php",
           {
             headers: {
               "Authorization": `Bearer ${token}`,
