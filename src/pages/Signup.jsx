@@ -88,7 +88,7 @@ console.log(errors);
             navigate("/login");
           }, 2000)
         }else{
-            // console.log("RESPONSE FROM PHP:", res.data);
+            console.log("RESPONSE FROM PHP:", res.data);
             toast.error(res.data.message || "Signup failed. Please try again.");
         }
       } catch (err) {
