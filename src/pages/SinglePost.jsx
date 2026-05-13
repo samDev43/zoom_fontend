@@ -19,7 +19,10 @@ export function SinglePost() {
   const [toHome, setToHome] = useState(false)
   const [comments, setComments] = useState([]);
   const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
-  const user = JSON.parse(localStorage.getItem("user"));
+  let user = JSON.parse(localStorage.getItem("user"));
+  if(!user){
+    user = null;
+  }
   let postId = post.id
 
   const navigate = useNavigate()
@@ -86,7 +89,7 @@ export function SinglePost() {
                 </div>
               </div>
               {/* <div onClick={() => { deletPost(post.id, setToHome) }} className=" */}
-              {user.currentUserId === post.user_id && (
+              {user && user.currentUserId === post.user_id && (
                 <div onClick={() => { setOpenDeleteModal(true) }} className="
                       flex
                       items-center
